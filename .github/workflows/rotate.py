@@ -6,9 +6,13 @@ import os
 import time
 import sys
 
-script_dir = sys.path[0]
-json_dir = os.path.join(script_dir, "..", "..", "hourly")
-current_dir = os.path.join(script_dir, "..", "..", "current")
+# script_dir = sys.path[0]
+# json_dir = os.path.join(script_dir, "..", "..", "hourly")
+# current_dir = os.path.join(script_dir, "..", "..", "current")
+
+# script_dir = sys.path[0]
+json_dir = os.path.join("hourly")
+current_dir = os.path.join("current")
 
 planets = [
         'jupiter', 'mars', 'mercury', 'neptune', 
@@ -17,10 +21,14 @@ planets = [
 
 current_time = int(time.time())
 
+print(current_time)
+
 for planet in planets:
+    print(planet)
     json_path = os.path.join(json_dir, f"{planet}.json")
     output_path = os.path.join(current_dir, f"{planet}.json")
     with open(json_path) as _json:
+        print("file is open")
         data = json.load(_json)
         state = None
         for hour in data["retrograde"]:
@@ -28,6 +36,7 @@ for planet in planets:
                 state = hour[1]
             else:
                 with open(output_path, "w") as _out:
+                    print("writing out")
                     output_data = { "retrograde": state }
                     json.dump(output_data, _out)
                 break
