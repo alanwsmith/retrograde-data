@@ -6,13 +6,9 @@ import os
 import time
 import sys
 
-# script_dir = sys.path[0]
-# json_dir = os.path.join(script_dir, "..", "..", "hourly")
-# current_dir = os.path.join(script_dir, "..", "..", "current")
-
-# script_dir = sys.path[0]
-json_dir = os.path.join("hourly")
-current_dir = os.path.join("current")
+script_dir = sys.path[0]
+data_dir = os.path.join(script_dir, "..", "..", "hourly")
+output_dir = os.path.join(script_dir, "..", "..", "current")
 
 planets = [
         'jupiter', 'mars', 'mercury', 'neptune', 
@@ -21,37 +17,19 @@ planets = [
 
 current_time = int(time.time())
 
-print(current_time)
-
-with open('here-2.txt', 'w') as _ot2:
-    _ot2.write('here is the thing for the test')
+print(f"Running process for: {current_time}")
 
 for planet in planets:
-    print(planet)
-    with open(f"hourly/{planet}.json") as _json:
-        print("file is open")
+    print(f"Processing planet: {planet}")
+    with open(f"{data_dir}/{planet}.json") as _json:
         data = json.load(_json)
         state = None
         for hour in data["retrograde"]:
             if current_time > hour[0]:
                 state = hour[1]
             else:
-                with open(f"current/{planet}.json", "w") as _out:
-                    print("writing out")
+                with open(f"{output_dir}/{planet}.json", "w") as _out:
                     output_data = { "retrograde": state }
                     json.dump(output_data, _out)
                 break
-
-
-
-
-
-
-
-
-
-
-
-
-
 
