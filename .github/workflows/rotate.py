@@ -5,8 +5,8 @@ import sys
 import os
 import time
 
-json_dir = os.path.join("..", "..", "hourly")
-current_dir = os.path.join("..", "..", "current")
+json_dir = os.path.join(".", "hourly")
+current_dir = os.path.join(".", "current")
 
 planets = [
         'jupiter', 'mars', 'mercury', 'neptune', 
