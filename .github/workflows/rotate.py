@@ -5,10 +5,11 @@ import sys
 import os
 import time
 import sys
+import datetime
 
 script_dir = sys.path[0]
-data_dir = os.path.join(script_dir, "..", "..", "hourly")
-output_dir = os.path.join(script_dir, "..", "..", "current")
+data_dir = os.path.abspath(os.path.join(script_dir, "..", "..", "hourly"))
+output_dir = os.path.abspath(os.path.join(script_dir, "..", "..", "current"))
 
 planets = [
         'jupiter', 'mars', 'mercury', 'neptune', 
@@ -29,7 +30,10 @@ for planet in planets:
                 state = hour[1]
             else:
                 with open(f"{output_dir}/{planet}.json", "w") as _out:
-                    output_data = { "retrograde": state }
+                    output_data = { 
+                        "updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+                        "retrograde": state
+                    }
                     json.dump(output_data, _out)
                 break
 
