@@ -23,14 +23,12 @@ current_time = int(time.time())
 
 print(current_time)
 
-with open('here.txt', 'w') as _ot2:
+with open('here-2.txt', 'w') as _ot2:
     _ot2.write('here is the thing for the test')
 
 for planet in planets:
     print(planet)
-    json_path = os.path.join(json_dir, f"{planet}.json")
-    output_path = os.path.join(current_dir, f"{planet}.json")
-    with open(json_path) as _json:
+    with open(f"hourly/{planet}.json") as _json:
         print("file is open")
         data = json.load(_json)
         state = None
@@ -38,7 +36,7 @@ for planet in planets:
             if current_time > hour[0]:
                 state = hour[1]
             else:
-                with open(output_path, "w") as _out:
+                with open(f"current/{planet}.json", "w") as _out:
                     print("writing out")
                     output_data = { "retrograde": state }
                     json.dump(output_data, _out)
