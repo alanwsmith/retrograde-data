@@ -1,5 +1,5 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} Commit Check - GitHub Actions
+name: rotate-retrogrades
+run-name: ${{ github.actor }} Rotate Retrogrades
 on: [push]
 jobs:
   check-bats-version:
