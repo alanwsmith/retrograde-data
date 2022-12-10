@@ -1,6 +1,9 @@
 name: rotate-retrogrades
-run-name: ${{ github.actor }} Rotate Retrogrades
-on: [push]
+run-name: Rotate Retrogrades
+on:
+  schedule:
+    - cron: '5/15 * * * *'
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest

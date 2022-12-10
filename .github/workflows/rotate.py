@@ -31,7 +31,7 @@ for planet in planets:
             else:
                 with open(f"{output_dir}/{planet}.json", "w") as _out:
                     output_data = { 
-                        "updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+                        "updated": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+00:00"),
                         "retrograde": state
                     }
                     json.dump(output_data, _out)
