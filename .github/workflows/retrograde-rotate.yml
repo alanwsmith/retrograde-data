@@ -1,15 +1,13 @@
-name: rotate-retrogrades
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  build:
+  check-bats-version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Create report file
-      run: date +%s > report.txt
-      - name: Commit report
-      run: |
-      git config --global user.name 'Your Name'
-      git config --global user.email 'your-username@users.noreply.github.com'
-      git commit -am "Automated report"
-      git push
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
