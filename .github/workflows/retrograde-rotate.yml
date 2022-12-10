@@ -2,7 +2,7 @@ name: rotate-retrogrades
 run-name: Rotate Retrogrades
 on:
   schedule:
-    - cron: '5/15 * * * *'
+    - cron: '5 * * * *'
 
 jobs:
   check-bats-version:
