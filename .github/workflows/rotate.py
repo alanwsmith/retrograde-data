@@ -23,6 +23,9 @@ current_time = int(time.time())
 
 print(current_time)
 
+with open('here.txt', 'w') as _ot2:
+    _ot2.write('here is the thing for the test')
+
 for planet in planets:
     print(planet)
     json_path = os.path.join(json_dir, f"{planet}.json")
